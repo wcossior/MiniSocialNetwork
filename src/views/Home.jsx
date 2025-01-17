@@ -36,96 +36,129 @@ const Home = () => {
         </div>
       </nav>
 
-      <div id="sidebar">
-        <ul className="menu bg-base-200 rounded-box w-56">
-          <li>
-            <a>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-              Item 2
-            </a>
-          </li>
-          <li>
-            <a>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Item 1
-            </a>
-          </li>
-          <li>
-            <a>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-              Item 3
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div id="create-post">
-
-        <div className="avatar online">
-          <div className="w-24 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-          </div>
+      <div className="flex mx-6">
+        <div id="sidebar" className='flex-none'>
+          <ul className="menu bg-base-200 rounded-box w-56">
+            <li>
+              <a>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Home
+              </a>
+            </li>
+            <li>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14V9a6 6 0 1 0-12 0v5c0 .386-.149.735-.405 1.005L4 17h5m6 0a3 3 0 1 1-6 0" />
+                </svg>
+                Notificaciones
+              </a>
+            </li>
+            <li>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M8 10h8M8 14h6M21 12c0 3.866-3.582 7-8 7-1.574 0-3.055-.364-4.38-1.02l-4.62 1.02 1.02-4.62A7.966 7.966 0 0 1 3 12c0-3.866 3.582-7 8-7s8 3.134 8 7z" />
+                </svg>
+                Mensajes
+              </a>
+            </li>
+          </ul>
         </div>
-
-        <textarea
-          placeholder="Bio"
-          className="textarea textarea-bordered textarea-sm w-full max-w-xs">
-        </textarea>
-
-        <button className="btn btn-active btn-ghost">Create a post</button>
-
-      </div>
-
-      <div id="post-list">
-
-        <div className="card bg-neutral w-96 shadow-xl">
-          <div className="card-body">
-            <div className="avatar online">
-              <div className="w-24 rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+        <div className='flex m-6 flex-1 flex-col'>
+          <div id="create-post">
+            <div className='flex gap-6'>
+              <div className="items-start flex-none">
+                <div className="avatar online">
+                  <div className="w-24 rounded-full">
+                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  </div>
+                </div>
+              </div>
+              <div className='flex-1 flex flex-col'>
+                <textarea
+                  placeholder="Bio"
+                  className="textarea textarea-bordered textarea-sm w-9/12">
+                </textarea>
+                <div className='flex justify-end mt-6 w-9/12'>
+                  <button className="btn btn-active btn-ghost">Create a post</button>
+                </div>
               </div>
             </div>
-            <h2 className="card-title">Card title!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
           </div>
-        </div>
 
+          <div id="post-list" className='flex flex-col items-center'>
+
+            <div className="card mt-6 bg-neutral w-full shadow-xl">
+              <div className="card-body">
+                <div className='flex'>
+                  <div>
+                    <div className="avatar online">
+                      <div className="w-24 rounded-full">
+                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mx-6">
+                    <h2 className="card-title">Card title!</h2>
+                    <p>If a dog chews shoes whose shoes does he choose? </p>
+                  </div>
+                </div>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">Editar</button>
+                  <button className="btn btn-danger">Eliminar</button>
+                </div>
+              </div>
+            </div>
+
+            <div className="card mt-6 bg-neutral w-full shadow-xl">
+              <div className="card-body">
+                <div className='flex'>
+                  <div>
+                    <div className="avatar online">
+                      <div className="w-24 rounded-full">
+                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mx-6">
+                    <h2 className="card-title">Card title!</h2>
+                    <p>If a dog chews shoes whose shoes does he choose? </p>
+                  </div>
+                </div>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">Editar</button>
+                  <button className="btn btn-danger">Eliminar</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+        </div>
       </div>
 
       <footer className="footer bg-neutral text-neutral-content p-10">
@@ -186,7 +219,6 @@ const Home = () => {
           </div>
         </nav>
       </footer>
-
     </div>
   )
 }

@@ -4,7 +4,7 @@ import './index.css'
 import Rutas from './Routes'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Rutas />
-  </StrictMode>
+    <StrictMode>
+        <Rutas />
+    </StrictMode>
 )

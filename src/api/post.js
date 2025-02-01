@@ -9,3 +9,13 @@ export const createPost = async (post) => {
         throw error;
     }
 }
+
+export const getAllPost = async () =>{
+    try {
+        const response = await axios.get(`${API_POST}/api-demo/v1/publication/?page_size=5`);
+        return response.data.results;
+    } catch (error) {
+        console.log("error al crear un post api: ", error);
+        throw error;    
+    }
+}

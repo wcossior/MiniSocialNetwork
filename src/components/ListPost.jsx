@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllPost } from '../api/post';
+import { deletePost, editPost, getAllPost } from '../api/post';
 
 
 
@@ -14,7 +14,6 @@ const ListPost = () => {
             try {
                 const data = await getAllPost();
                 setlistPost(data);
-                console.log(data);
             } catch (error) {
                 console.log("Error al obtener los post", error);
             }
@@ -23,12 +22,32 @@ const ListPost = () => {
 
     }, [])
 
-    const sendEdit = () => {
+    const sendEdit = async (post) => {
 
+        try {
+            const editedPost = {
+                ...post,
+                title: textPost,
+                content: textPost,
+            }
+            await editPost(editedPost);
+            setactivateEdit(false);
+            const data = await getAllPost();
+            setlistPost(data);
 
-        console.log(textPost);
+        } catch (error) {
+            console.log("Error al editar un post", error);
+        }
+    }
 
-
+    const sendDelete = async (postId) => {
+        try {
+            await deletePost(postId);
+            const data = await getAllPost();
+            setlistPost(data);
+        } catch (error) {
+            console.log("Error al eliminar un post", error);
+        }
     }
 
     return (
@@ -61,7 +80,7 @@ const ListPost = () => {
                                 </div>
                                 <div className="card-actions justify-end">
                                     {activateEdit ?
-                                        <button onClick={sendEdit} className="btn btn-primary">Save</button>
+                                        <button onClick={() => sendEdit(post)} className="btn btn-primary">Save</button>
                                         :
                                         <button onClick={() => setactivateEdit(true)} className="btn btn-primary">Edit</button>
                                     }
@@ -69,7 +88,7 @@ const ListPost = () => {
                                     {activateEdit ?
                                         <button onClick={() => setactivateEdit(false)} className="btn btn-danger">Cancel</button>
                                         :
-                                        <button className="btn btn-danger">Delete</button>
+                                        <button onClick={() => sendDelete(post.id)} className="btn btn-danger">Delete</button>
                                     }
                                 </div>
                             </div>

@@ -1,11 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from '../components/Footer'
+import { authToLogin } from '../api/user';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+
+    const SendLogin = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const username = formData.get("username");
+        const password = formData.get("password");
+        const loginData = {
+            "username": username,
+            "password": password
+        }
+        try {
+            await authToLogin(loginData);
+            navigate("/");
+        } catch (error) {
+            console.log("Error al intentar iniciar sesion", error);
+        }
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem("access")) {
+            navigate("/");
+        }
+    }, [])
+
+
     return (
         <div className='flex flex-col h-screen'>
             <div className='flex-1 flex justify-center'>
-                <form className='w-1/5 flex flex-col gap-6 mt-[60px]' action="">
+                <form className='w-1/5 flex flex-col gap-6 mt-[60px]' onSubmit={SendLogin}>
                     <h1 className='text-4xl font-bold text-center mb-4'>Login</h1>
                     <label className="input input-bordered flex items-center gap-2">
                         <svg
@@ -37,6 +65,7 @@ const Login = () => {
             <Footer />
         </div>
     )
+
 }
 
 export default Login

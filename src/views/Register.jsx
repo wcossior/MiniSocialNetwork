@@ -1,11 +1,31 @@
 import React from 'react'
 import Footer from '../components/Footer'
+import { registerUser } from '../api/user';
 
 const Register = () => {
+
+    const sendRegister = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const username = formData.get("username");
+        const email = formData.get("email");
+        const password = formData.get("password");
+        const registerData = {
+            "username": username,
+            "email": email,
+            "password": password
+        }
+        try {
+            await registerUser(registerData);
+        } catch (error) {
+            console.log("Error al intentar registrar", error);
+        }
+    }
+
     return (
         <div className='flex flex-col h-screen'>
             <div className='flex-1 flex justify-center'>
-                <form className='w-1/5 flex flex-col gap-6 mt-[60px]' action="">
+                <form className='w-1/5 flex flex-col gap-6 mt-[60px]' onSubmit={sendRegister}>
                     <h1 className='text-4xl font-bold text-center mb-4'>Create Account</h1>
 
                     <label className="input input-bordered flex items-center gap-2">

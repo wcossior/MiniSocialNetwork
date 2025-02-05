@@ -1,21 +1,21 @@
 # MiniSocialNetwork
 
-MiniSocialNetwork es una plataforma interactiva que permite a los usuarios crear una cuenta, iniciar sesión, y crear publicaciones. Este proyecto consume una API para manejar las operaciones de autenticación y CRUD de publicaciones.
+MiniSocialNetwork is an interactive platform that allows users to create an account, log in, and create posts. This project consumes an API to handle authentication and CRUD operations for posts.
 
-Puedes probarlo aquí: [MiniSocialNetwork Demo](https://mini-social-network-olive.vercel.app/)
+You can try it here: [MiniSocialNetwork](https://mini-social-network-olive.vercel.app/)
 
-## Características
-- **Registro e inicio de sesión**: Los usuarios pueden registrarse y acceder a su cuenta de manera rápida y sencilla.
-- **Creación de publicaciones**: Los usuarios pueden crear publicaciones con facilidad y compartir contenido.
-- **Edición y eliminación de publicaciones**: Una vez creada una publicación, los usuarios pueden editarla o eliminarla en cualquier momento.
-- **Lista de publicaciones**: La aplicación muestra un listado de las publicaciones más recientes.
-- **Cierre de sesión**: Los usuarios pueden cerrar sesión de manera rápida y segura.
+## Features
+- **Registration and Login**: Users can easily register and log in to their account.
+- **Post Creation**: Users can quickly create and share posts.
+- **Post Editing and Deletion**: Once a post is created, users can edit or delete it at any time.
+- **Post List**: The application displays a list of the most recent posts.
+- **Logout**: Users can log out quickly and securely.
 
-## Tecnologías Utilizadas
+## Technologies Used
 - React
 - JavaScript
 - HTML5
 - CSS3
-- DaysiUI
+- DaisyUI
 - Zustand
 - React-router-dom

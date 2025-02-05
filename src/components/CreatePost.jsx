@@ -1,12 +1,14 @@
-import React from 'react'
-import { createPost } from '../api/post';
+import React, { useState } from 'react'
+import { createPost, getAllPost } from '../api/post';
+import useStore from '../store';
 
 const CreatePost = () => {
 
+    const { savePosts } = useStore();
+    const [textPost, settextPost] = useState("")
+
     const sendDataPost = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        const textPost = formData.get("text");
         const post = {
             title: textPost,
             content: textPost,
@@ -14,6 +16,9 @@ const CreatePost = () => {
         }
         try {
             await createPost(post);
+            const data = await getAllPost();
+            savePosts(data);
+            settextPost("");
         } catch (error) {
             console.log("Error al crear post form", error);
         }
@@ -32,7 +37,9 @@ const CreatePost = () => {
                 </div>
                 <form onSubmit={sendDataPost} className='flex-1 flex flex-col'>
                     <textarea
+                        onChange={(e) => settextPost(e.currentTarget.value)}
                         name='text'
+                        value={textPost}
                         placeholder="Bio"
                         className="textarea textarea-bordered textarea-sm">
                     </textarea>

@@ -6,15 +6,18 @@ import SideBar from '../components/SideBar'
 import CreatePost from '../components/CreatePost'
 import { getUser } from '../api/user'
 import { useNavigate } from 'react-router-dom'
+import useStore from '../store'
 
 const Home = () => {
 
     const navigate = useNavigate();
+    const { saveUser } = useStore();
 
     useEffect(() => {
         const verifyTokenExpired = async () => {
             if (localStorage.getItem("access")) {
-                await getUser()
+                const user = await getUser();
+                saveUser(user);
             } else {
                 navigate("login");
             }

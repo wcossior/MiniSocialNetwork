@@ -1,10 +1,13 @@
 import React from 'react'
+import useStore from '../store'
 
 const Nav = () => {
+    const {user} = useStore();
+
     return (
         <nav className="navbar bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl">MiniRedSocial</a>
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
@@ -24,7 +27,7 @@ const Nav = () => {
                         <li>
                             <a className="justify-between">
                                 Profile
-                                <span className="badge">New</span>
+                                <span className="badge">{user?.username}</span>
                             </a>
                         </li>
                         <li><a>Settings</a></li>

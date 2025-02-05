@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { deletePost, editPost, getAllPost } from '../api/post';
+import useStore from '../store';
 
 
 
 const ListPost = () => {
 
-    const [listPost, setlistPost] = useState([]);
     const [activateEdit, setactivateEdit] = useState(false);
     const [textPost, settextPost] = useState("");
+    const {savePosts, listPosts} = useStore();
 
     useEffect(() => {
         const requestPosts = async () => { //funcion para obtener posts
             try {
                 const data = await getAllPost();
-                setlistPost(data);
+                savePosts(data);
             } catch (error) {
                 console.log("Error al obtener los post", error);
             }
@@ -33,7 +34,7 @@ const ListPost = () => {
             await editPost(editedPost);
             setactivateEdit(false);
             const data = await getAllPost();
-            setlistPost(data);
+            savePosts(data);
 
         } catch (error) {
             console.log("Error al editar un post", error);
@@ -44,7 +45,7 @@ const ListPost = () => {
         try {
             await deletePost(postId);
             const data = await getAllPost();
-            setlistPost(data);
+            savePosts(data);
         } catch (error) {
             console.log("Error al eliminar un post", error);
         }
@@ -54,8 +55,8 @@ const ListPost = () => {
 
         <div id="post-list" className='flex flex-col items-center w-5/6'>
 
-            {listPost &&
-                listPost.map(post => {
+            {listPosts &&
+                listPosts.map(post => {
                     return (
                         <div key={post.id} className="card mt-6 bg-neutral w-full shadow-xl">
                             <div className="card-body">

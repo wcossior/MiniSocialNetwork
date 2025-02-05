@@ -21,8 +21,7 @@ export const getUser = async () => {
     try {
         const token = localStorage.getItem("access");
         const response = await axios.get(API_USER_ME, { headers: { "Authorization": `Bearer ${token}` } });
-        localStorage.setItem("username", response.data.username);
-        localStorage.setItem("email", response.data.email);
+        return response.data;
     } catch (error) {
         if (error.status === 401) {
             getRefresh();

@@ -2,7 +2,7 @@
 
 MiniSocialNetwork es una plataforma interactiva que permite a los usuarios crear una cuenta, iniciar sesión, y crear publicaciones. Este proyecto consume una API para manejar las operaciones de autenticación y CRUD de publicaciones.
 
-Puedes probarlo aquí: [MiniSocialNetwork Demo](https://)
+Puedes probarlo aquí: [MiniSocialNetwork Demo]([https://](https://mini-social-network-olive.vercel.app/login))
 
 ## Características
 - **Registro e inicio de sesión**: Los usuarios pueden registrarse y acceder a su cuenta de manera rápida y sencilla.

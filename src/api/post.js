@@ -28,13 +28,22 @@ export const deletePost = async (postId) => {
     }
 }
 
-export const getAllPost = async () =>{
+export const getAllPost = async () => {
     try {
         const response = await axios.get(`${API_POST}/api-demo/v1/publication/?page_size=5`);
-        return response.data.results;
+        return response.data;
     } catch (error) {
-        console.log("error al crear un post api: ", error);
-        throw error;    
+        console.log("error al obtener los posts: ", error);
+        throw error;
+    }
+}
+export const getNextAllPost = async (nextPage) => {
+    try {
+        const response = await axios.get(nextPage);
+        return response.data;
+    } catch (error) {
+        console.log("error al obtener los demas posts: ", error);
+        throw error;
     }
 }
 
@@ -44,25 +53,25 @@ const updatePostApi = (idPost) => {
     setLoadingPost(true);
 
     const data = {
-      title: publicacionEdit,
-      content: publicacionEdit,
-      author: 1,
+        title: publicacionEdit,
+        content: publicacionEdit,
+        author: 1,
     };
 
     axios
-      .put(`${API_POST}/api-demo/v1/publication/${idPost}`, data)
-      .then((response) => {
-        console.log(response.data);
+        .put(`${API_POST}/api-demo/v1/publication/${idPost}`, data)
+        .then((response) => {
+            console.log(response.data);
 
-        setPublicacionIdEdit(null);
-        setPublicacionEdit("");
-        getListPost();
-        setLoadingPost(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setPublicacionIdEdit(null);
-        setPublicacionEdit("");
-        setLoadingPost(false);
-      });
-  };
+            setPublicacionIdEdit(null);
+            setPublicacionEdit("");
+            getListPost();
+            setLoadingPost(false);
+        })
+        .catch((error) => {
+            console.log(error);
+            setPublicacionIdEdit(null);
+            setPublicacionEdit("");
+            setLoadingPost(false);
+        });
+};

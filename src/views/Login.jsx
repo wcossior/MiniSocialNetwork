@@ -7,7 +7,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const SendLogin = (e) => {
+    const SendLogin = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const username = formData.get("username");
@@ -18,12 +18,11 @@ const Login = () => {
         }
         try {
             setIsSubmitting(true);
-            setTimeout(async () => {
-                await authToLogin(loginData);
-                setIsSubmitting(false);
-                navigate("/");
-            }, 2000);
+            await authToLogin(loginData);
+            setIsSubmitting(false);
+            navigate("/");
         } catch (error) {
+            setIsSubmitting(false);
             console.log("Error al intentar iniciar sesion", error);
         }
     }

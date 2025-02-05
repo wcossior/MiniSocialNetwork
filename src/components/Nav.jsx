@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import useStore from '../store'
+import { useNavigate } from 'react-router-dom'
 
 const Nav = () => {
     const { user, listPostsCopy, saveFilteredPosts, savePosts } = useStore();
+    const navigate = useNavigate();
 
     const searchPost = (e) => {
         const searchValue = e.currentTarget.value.toLowerCase();
@@ -15,6 +17,14 @@ const Nav = () => {
         } else {
             savePosts(listPostsCopy);
         }
+    }
+
+    
+    const logout = () => {
+        localStorage.removeItem("isLogged");
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+        navigate("/login");
     }
 
     return (
@@ -44,7 +54,7 @@ const Nav = () => {
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li onClick={logout}><a>Logout</a></li>
                     </ul>
                 </div>
             </div>

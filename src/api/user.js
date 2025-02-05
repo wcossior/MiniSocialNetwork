@@ -43,7 +43,7 @@ export const getRefresh = async () => {
             console.log("Error al intentar obtener tokens con refresh", error);
             localStorage.removeItem("access");
             localStorage.removeItem("refresh");
-            localStorage.removeItem("isLogged", JSON.stringify(false));
+            localStorage.removeItem("isLogged");
             throw error;
         }
     }

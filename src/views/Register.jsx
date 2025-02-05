@@ -15,7 +15,7 @@ const Register = () => {
     }, [])
 
 
-    const sendRegister = (e) => {
+    const sendRegister = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const username = formData.get("username");
@@ -28,12 +28,11 @@ const Register = () => {
         }
         try {
             setIsSubmitting(true);
-            setTimeout(async () => {
-                await registerUser(registerData);
-                setIsSubmitting(false)
-                navigate("/login");
-            }, 2000);
+            await registerUser(registerData);
+            setIsSubmitting(false)
+            navigate("/login");
         } catch (error) {
+            setIsSubmitting(false)
             console.log("Error al intentar registrar", error);
         }
     }

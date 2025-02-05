@@ -6,21 +6,28 @@ const CreatePost = () => {
 
     const { savePosts } = useStore();
     const [textPost, settextPost] = useState("")
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const sendDataPost = async (e) => {
         e.preventDefault();
-        const post = {
-            title: textPost,
-            content: textPost,
-            author: 1,
-        }
-        try {
-            await createPost(post);
-            const data = await getAllPost();
-            savePosts(data);
-            settextPost("");
-        } catch (error) {
-            console.log("Error al crear post form", error);
+        if (textPost !== "") {
+            const post = {
+                title: textPost,
+                content: textPost,
+                author: 1,
+            }
+            setIsSubmitting(true);
+            try {
+                await createPost(post);
+                const data = await getAllPost();
+                savePosts(data);
+                settextPost("");
+                setIsSubmitting(false);
+            } catch (error) {
+                setIsSubmitting(false);
+                settextPost("");
+                console.log("Error al crear post form", error);
+            }
         }
 
     }
@@ -41,10 +48,17 @@ const CreatePost = () => {
                         name='text'
                         value={textPost}
                         placeholder="Bio"
+                        required
                         className="textarea textarea-bordered textarea-sm">
                     </textarea>
                     <div className='flex justify-end mt-6'>
-                        <button type='submit' className="btn btn-active btn-ghost">Create a post</button>
+                        <button disabled={isSubmitting} type='submit' className="btn btn-active btn-ghost">
+                            {isSubmitting ?
+                                "Publishing..."
+                                :
+                                "Create a post"
+                            }
+                        </button>
                     </div>
                 </form>
             </div>

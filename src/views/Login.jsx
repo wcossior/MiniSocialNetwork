@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import { authToLogin } from '../api/user';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const SendLogin = async (e) => {
+    const SendLogin = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const username = formData.get("username");
@@ -16,15 +17,20 @@ const Login = () => {
             "password": password
         }
         try {
-            await authToLogin(loginData);
-            navigate("/");
+            setIsSubmitting(true);
+            setTimeout(async () => {
+                await authToLogin(loginData);
+                setIsSubmitting(false);
+                navigate("/");
+            }, 2000);
         } catch (error) {
             console.log("Error al intentar iniciar sesion", error);
         }
     }
 
     useEffect(() => {
-        if (localStorage.getItem("access")) {
+        const isLogged = JSON.parse(localStorage.getItem("isLogged"));
+        if (isLogged) {
             navigate("/");
         }
     }, [])
@@ -59,7 +65,14 @@ const Login = () => {
                         </svg>
                         <input name='password' type="password" className="grow" placeholder='Password' />
                     </label>
-                    <button type='submit' className="btn btn-outline">Login</button>
+                    <button type='submit' className="btn btn-outline" disabled={isSubmitting}>
+                        {isSubmitting ?
+                            "Submiting..."
+                            :
+                            "Login"
+                        }
+                    </button>
+                    <span>Don't you have an account? <Link className="link link-info text-lg" to="/register">Register</Link></span>
                 </form>
             </div>
             <Footer />

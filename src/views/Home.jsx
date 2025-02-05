@@ -11,18 +11,15 @@ import useStore from '../store'
 const Home = () => {
 
     const navigate = useNavigate();
-    const { saveUser } = useStore();
-
+    const saveUser = useStore((state) => state.saveUser);
     useEffect(() => {
-        const verifyTokenExpired = async () => {
-            if (localStorage.getItem("access")) {
-                const user = await getUser();
-                saveUser(user);
-            } else {
-                navigate("login");
-            }
-        };
-        verifyTokenExpired();
+        const isLogged = JSON.parse(localStorage.getItem("isLogged"));
+        if (isLogged) {
+            saveUser();
+        } else {
+            navigate("/login");
+        }
+
     }, [])
 
 

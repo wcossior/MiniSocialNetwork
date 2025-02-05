@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useStore from '../store'
 
 const Nav = () => {
-    const {user} = useStore();
+    const { user, listPostsCopy, saveFilteredPosts, savePosts } = useStore();
+
+    const searchPost = (e) => {
+        const searchValue = e.currentTarget.value.toLowerCase();
+        
+        if (searchValue !== "") {
+            let filteredPosts = listPostsCopy.filter((post) =>
+                post.title.toLowerCase().includes(searchValue)
+            );
+            saveFilteredPosts(filteredPosts);
+        } else {
+            savePosts(listPostsCopy);
+        }
+    }
 
     return (
         <nav className="navbar bg-base-100">
@@ -11,7 +24,7 @@ const Nav = () => {
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
-                    <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                    <input onChange={(e) => searchPost(e)} type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
                 </div>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

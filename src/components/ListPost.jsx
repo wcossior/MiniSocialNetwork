@@ -21,7 +21,7 @@ const ListPost = () => {
         };
         requestPosts();
 
-    }, [])
+    },[])
 
     const sendEdit = async (post) => {
 

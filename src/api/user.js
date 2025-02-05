@@ -10,7 +10,7 @@ export const authToLogin = async (loginData) => {
         const { access, refresh } = response.data;
         localStorage.setItem("access", access);
         localStorage.setItem("refresh", refresh);
-
+        localStorage.setItem("isLogged", JSON.stringify(true));
     } catch (error) {
         console.log("Error al intentar inciar sesion api", error);
         throw error;
@@ -21,9 +21,10 @@ export const getUser = async () => {
     try {
         const token = localStorage.getItem("access");
         const response = await axios.get(API_USER_ME, { headers: { "Authorization": `Bearer ${token}` } });
+        localStorage.setItem("isLogged", JSON.stringify(true));
         return response.data;
     } catch (error) {
-        if (error.status === 401) {
+        if (error.response?.status === 401) {
             getRefresh();
         }
 
@@ -37,9 +38,13 @@ export const getRefresh = async () => {
             const response = await axios.post(API_REFRESH_TOKEN, { token });
             localStorage.setItem("access", response.data.access);
             localStorage.setItem("refresh", response.data.refresh);
+            localStorage.setItem("isLogged", JSON.stringify(true));
         } catch (error) {
+            console.log("Error al intentar obtener tokens con refresh", error);
             localStorage.removeItem("access");
             localStorage.removeItem("refresh");
+            localStorage.removeItem("isLogged", JSON.stringify(false));
+            throw error;
         }
     }
 }

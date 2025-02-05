@@ -20,7 +20,7 @@ const CreatePost = () => {
             try {
                 await createPost(post);
                 const data = await getAllPost();
-                savePosts(data);
+                savePosts(data.results);
                 settextPost("");
                 setIsSubmitting(false);
             } catch (error) {

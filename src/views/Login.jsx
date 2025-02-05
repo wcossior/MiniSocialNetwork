@@ -67,7 +67,7 @@ const Login = () => {
                     </label>
                     <button type='submit' className="btn btn-outline" disabled={isSubmitting}>
                         {isSubmitting ?
-                            "Submiting..."
+                            "Logging in..."
                             :
                             "Login"
                         }

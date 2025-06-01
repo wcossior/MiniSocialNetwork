@@ -1,8 +1,21 @@
-# React + Vite
+# MiniSocialNetwork
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MiniSocialNetwork is an interactive platform that allows users to create an account, log in, and create posts. This project consumes an API to handle authentication and CRUD operations for posts.
 
-Currently, two official plugins are available:
+You can try it here: [MiniSocialNetwork](https://mini-social-network-olive.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- **Registration and Login**: Users can easily register and log in to their account.
+- **Post Creation**: Users can quickly create and share posts.
+- **Post Editing and Deletion**: Once a post is created, users can edit or delete it at any time.
+- **Post List**: The application displays a list of the most recent posts.
+- **Logout**: Users can log out quickly and securely.
+
+## Technologies Used
+- React
+- JavaScript
+- HTML5
+- CSS3
+- DaisyUI
+- Zustand
+- React-router-dom

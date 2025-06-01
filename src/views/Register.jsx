@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Register = () => {
     const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         const isLogged = JSON.parse(localStorage.getItem("isLogged"));
@@ -33,7 +34,14 @@ const Register = () => {
             navigate("/login");
         } catch (error) {
             setIsSubmitting(false)
-            console.log("Error al intentar registrar", error);
+
+            if (error.response?.data?.password) {
+                setErrorMessage(error.response.data.password[0]);
+            }else if (error.response?.data?.username) {
+                setErrorMessage(error.response.data.username);
+            } else {
+                setErrorMessage("Error when trying to register.");
+            }
         }
     }
 
@@ -88,7 +96,11 @@ const Register = () => {
                         }
                     </button>
                     <span>Do you have an account? <Link className="link link-info text-lg" to="/login">Login</Link></span>
-
+                    {errorMessage && (
+                        <div className="text-red-500 text-center">
+                            {errorMessage}
+                        </div>
+                    )}
                 </form>
             </div>
 
